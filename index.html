@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Zaidaan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght=500;700&family=Urbanist:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d0d12;
+            --accent-color: #00adb5;
+            --fire-color: #ff4d00;
+            --text-main: #f0f0f0;
+            --card-bg: rgba(255, 255, 255, 0.04);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Urbanist', sans-serif;
+            overflow: hidden; 
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .stars-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            opacity: 0.2;
+            z-index: 1;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 9999; 
+            background: linear-gradient(to bottom, rgba(13,13,18,0.9), transparent);
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-item {
+            background: none;
+            border: none;
+            color: #aaa;
+            font-weight: 600;
+            font-size: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: var(--accent-color);
+            text-shadow: 0 0 8px rgba(0, 173, 181, 0.5);
+        }
+
+        .main-slider {
+            display: flex;
+            width: 400vw; 
+            height: 100vh;
+            transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .page {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 10% 0 10%;
+            text-align: center;
+        }
+
+        .rocket-container {
+            position: fixed;
+            bottom: -150px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 50; 
+            pointer-events: none; 
+        }
+
+        .rocket-body {
+            font-size: 4.5rem;
+            filter: drop-shadow(0 0 15px var(--fire-color)) drop-shadow(0 0 30px var(--fire-color));
+        }
+
+        .launching {
+            animation: rocketFly 1s ease-in-out forwards;
+        }
+
+        @keyframes rocketFly {
+            0% { bottom: -150px; transform: translateX(-50%) scale(1); }
+            40% { bottom: 30%; transform: translateX(-50%) scale(1.3); }
+            100% { bottom: 120%; transform: translateX(-50%) scale(1); }
+        }
+
+        .smoke-particle {
+            position: fixed;
+            background: rgba(255, 255, 255, 0.35);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 49;
+            filter: blur(4px);
+        }
+
+        .fire-frame {
+            width: 180px;
+            height: 180px;
+            margin-bottom: 25px;
+            border-radius: 50%;
+            padding: 5px;
+            background: linear-gradient(45deg, #ff4d00, #ffae00, #ff4d00);
+            background-size: 200% 200%;
+            animation: fireWave 2s infinite linear;
+            box-shadow: 0 0 35px rgba(255, 77, 0, 0.5);
+        }
+
+        .fire-frame img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--bg-color);
+        }
+
+        @keyframes fireWave {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1, h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 35px;
+            border-radius: 24px;
+            max-width: 650px;
+            width: 100%;
+            margin-top: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .tiktok-badge {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(90deg, #ff0050, #00f2ea);
+            color: #000;
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .stat-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 25px;
+        }
+
+        .stat-box h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            color: var(--accent-color);
+        }
+
+        .stat-box p {
+            font-size: 0.95rem;
+            opacity: 0.6;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            width: 100%;
+            max-width: 500px;
+            margin-top: 25px;
+        }
+
+        .contact-grid a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 16px;
+            transition: 0.3s;
+        }
+
+        .contact-grid a:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .ig-btn:hover { border-color: #e1306c !important; color: #e1306c; }
+        .wa-btn:hover { border-color: #25d366 !important; color: #25d366; }
+
+        @media (max-width: 650px) {
+            nav {
+                flex-direction: column;
+                gap: 12px;
+                padding: 15px 5%;
+            }
+            .nav-links {
+                gap: 2px;
+            }
+            .nav-item {
+                font-size: 0.85rem;
+                padding: 6px 10px;
+            }
+            .page {
+                padding-top: 140px;
+            }
+            .contact-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stars-bg"></div>
+
+    <div id="rocket" class="rocket-container">
+        <div class="rocket-body">🚀</div>
+    </div>
+
+    <nav>
+        <div class="logo" onclick="goToPage(0)">Zaidaan.</div>
+        <div class="nav-links">
+            <button class="nav-item active" id="link-0" onclick="goToPage(0)">Home</button>
+            <button class="nav-item" id="link-1" onclick="goToPage(1)">Tentang</button>
+            <button class="nav-item" id="link-2" onclick="goToPage(2)">Karya</button>
+            <button class="nav-item" id="link-3" onclick="goToPage(3)">Kontak</button>
+        </div>
+    </nav>
+
+    <div class="main-slider" id="slider">
+        
+        <div class="page">
+            <div class="fire-frame">
+                <img src="foto.jpeg" alt="Foto Zaidaan">
+            </div>
+            <h1>Zaidaan Rizqullah H.</h1>
+            <p style="color: var(--accent-color); font-weight: 600; font-size: 1.1rem; margin-bottom: 10px;">Tech Enthusiast | Digital Creator</p>
+            <p style="max-width: 500px; opacity: 0.7; font-size: 0.95rem;">Selamat datang di website portofolio personal saya. Tempat di mana kreativitas tulisan bertemu dengan baris kode.</p>
+        </div>
+
+        <div class="page">
+            <div class="card">
+                <h2>Tentang Perjalanan Saya</h2>
+                <p style="opacity: 0.8; text-align: left; font-size: 0.95rem; margin-top: 15px;">
+                    Saya adalah seorang pegiat teknologi yang berbasis di Surabaya. Selain mengulik logika pemrograman web (HTML, CSS), saya juga aktif menuangkan ekspresi emosional dan bercerita lewat dunia kepenulisan kreatif (*creative writing*).
+                </p>
+                <div style="text-align: left; margin-top: 20px; font-size: 0.9rem; opacity: 0.9; line-height: 2;">
+                    • Berbasis di Kota Surabaya, Jawa Timur<br>
+                    • Kreator Konten Media Sosial Berbasis Narasi<br>
+                    • Fokus pada Front-End Design & Logika Dasar
+                </div>
+            </div>
+        </div>
+
+        <div class="page">
+            <div class="tiktok-badge">TIKTOK CREATOR</div>
+            <h2>@semogarilet</h2>
+            <div class="card">
+                <p style="font-style: italic; opacity: 0.8; font-size: 1.05rem;">"Menyuarakan apa yang sulit diungkapkan melalui kata-kata."</p>
+                <div class="stat-container">
+                    <div class="stat-box">
+                        <h3>50K+</h3>
+                        <p>Total Likes</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Viral</h3>
+                        <p>Konten Relevan</p>
+                    </div>
+                </div>
+                <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.7;">Fokus menyusun konten *quoters* emosional dan motivasi kehidupan yang sukses membangun interaksi tinggi di platform TikTok.</p>
+                <a href="https://www.tiktok.com/@semogarilet" target="_blank" style="color: #00f2ea; text-decoration: none; display: inline-block; margin-top: 15px; font-weight: 600; font-size: 0.9rem; border-bottom: 1px dashed;">Kunjungi TikTok Saya →</a>
+            </div>
+        </div>
+
+        <div class="page">
+            <h2>Mari Terhubung</h2>
+            <p style="opacity: 0.6; font-size: 0.95rem;">Hubungi saya secara langsung melalui jaringan di bawah ini:</p>
+            <div class="contact-grid">
+                <a href="mailto:zidaancuy@gmail.com">Email</a>
+                <a href="https://instagram.com/zidaanherlambang" target="_blank" class="ig-btn">Instagram</a>
+                <a href="https://wa.me/6285755882918" target="_blank" class="wa-btn">WhatsApp</a>
+                <a href="https://github.com/zidaancuy-beep" target="_blank">GitHub</a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const slider = document.getElementById('slider');
+        const rocket = document.getElementById('rocket');
+
+        function goToPage(index) {
+            document.querySelectorAll('.nav-links .nav-item').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.getElementById(`link-${index}`);
+            if(activeBtn) activeBtn.classList.add('active');
+
+            slider.style.transform = `translateX(-${index * 100}vw)`;
+
+            rocket.classList.remove('launching');
+            void rocket.offsetWidth; 
+            rocket.classList.add('launching');
+
+            createSmokeEffect();
+        }
+
+        function createSmokeEffect() {
+            let smokeCount = 0;
+            const smokeInterval = setInterval(() => {
+                if (smokeCount > 18) { 
+                    clearInterval(smokeInterval);
+                    return;
+                }
+                
+                const particle = document.createElement('div');
+                particle.className = 'smoke-particle';
+                
+                const startX = window.innerWidth / 2;
+                const startY = window.innerHeight * 0.7; 
+                
+                const size = Math.random() * 25 + 15;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${startX + (Math.random() - 0.5) * 40}px`;
+                particle.style.top = `${startY}px`;
+                
+                document.body.appendChild(particle);
+                
+                particle.animate([
+                    { transform: 'translateY(0) scale(1)', opacity: 0.7 },
+                    { transform: `translate(${(Math.random() - 0.5) * 120}px, 160px) scale(2.2)`, opacity: 0 }
+                ], {
+                    duration: 900,
+                    easing: 'ease-out'
+                }).onfinish = () => particle.remove();
+
+                smokeCount++;
+            }, 30);
+        }
+    </script>
+
+</body>
+</html>
